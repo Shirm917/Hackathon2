@@ -4,4 +4,7 @@ CREATE TABLE tasks (
 	description VARCHAR(1000) NOT NULL
 );
 
-SELECT * FROM tasks;
+Select * From tasks;
+
+ALTER TABLE tasks
+ADD COLUMN status VARCHAR(30) NOT NULL DEFAULT 'todo';
