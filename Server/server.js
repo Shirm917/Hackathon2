@@ -74,23 +74,22 @@ app.post("/", (req,res) => {
 
 // update a task
 app.put("/", (req,res) => {
-
-    const {task_id,dataName,dataDescription,status} = req.body;
-
+    const {task_id,dataName,dataDescription,dataStatus} = req.body;
     db("tasks")
     .where("task_id", task_id)
     .update({
         name: dataName,
         description: dataDescription,
-        status
+        status: dataStatus
     })
     .then(rows => {
-        selectAll(status)
+        return db("tasks")
+        .select("task_id","name", "description", "status")
+        .orderBy("task_id", "asc")
         .then(rows => res.json(rows))
         .catch(err => {
         res.status(404).json({msg: err.message});
         })
-        console.log(rows);
     })
     .catch(err => {
         res.status(404).json({msg: err.message});
@@ -117,9 +116,7 @@ app.delete("/", (req,res) => {
 
 function selectAll(status) {
     return db("tasks")
-
     .select("task_id","name", "description", "status")
     .where("status", status)
     .orderBy("task_id", "asc")
-
 }
