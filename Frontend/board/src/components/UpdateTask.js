@@ -25,11 +25,19 @@ function UpdateTask(props) {
           <Form onSubmit={(event) => updateTask(task,event)}>
             <Form.Group className="mb-3">
               <Form.Label>Name</Form.Label>
-              <Form.Control type="text" autoFocus name="name" defaultValue={task.name} onChange={setTask} required/>
+              <Form.Control type="text" autoFocus name="name" defaultValue={task.name} onChange={setTask}/>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Description</Form.Label>
-              <Form.Control type="text" autoFocus name="description" defaultValue={task.description} onChange={setTask} required/>
+              <Form.Control type="text" autoFocus name="description" defaultValue={task.description} onChange={setTask}/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Select name="status" onChange={setTask} >
+                    <option value="chooseStatus">Choose Status:</option>
+                    <option value="todo">To Do</option>
+                    <option value="doing">Doing</option>
+                    <option value="done">Done</option>
+                </Form.Select>
             </Form.Group>
             <Button variant="primary" type="submit" onClick={handleClose}>Update</Button>
           </Form>
