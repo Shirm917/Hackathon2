@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { BsPencilSquare } from "react-icons/bs";
 
 function UpdateTask(props) {
   const {setTask,updateTask,task} = props;  
@@ -12,8 +13,8 @@ function UpdateTask(props) {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Update Task
+      <Button className="update" variant="transparent" onClick={handleShow}>
+        <BsPencilSquare size={15}/>
       </Button>
 
       <Modal show={show} onHide={handleClose}>

@@ -68,12 +68,9 @@ setTask = (event) => {
 // update task
 updateTask = (element,event) => {
   event.preventDefault();
-  this.setState({
-    name: element.name,
-    description: element.description,
-    status: element.status
-  })
   const {name,description} = this.state;
+  const dataName = name.length === 0 ? element.name : name;
+  const dataDescription = description.length === 0 ? element.description : description;
   fetch("http://localhost:8000", {
       method: "PUT",
       headers: {
@@ -81,8 +78,8 @@ updateTask = (element,event) => {
       },
       body: JSON.stringify({
         task_id: element.task_id,
-        name,
-        description,
+        dataName,
+        dataDescription,
         status: element.status
       })
   })

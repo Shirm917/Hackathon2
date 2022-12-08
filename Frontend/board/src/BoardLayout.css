@@ -1,10 +1,57 @@
+body {
+    background-image: url("../public/pexels-michael-block-3225517.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 section {
     display: flex;
     justify-content: space-between;
+    /* margin-top: 20px; */
+}
+
+h1 {
+    text-align: center;
 }
 
 .todo,
 .doing,
 .done {
-    background-color: lightgray;
+    background-color: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(86,213,200,1) 0%, rgba(0,212,255,1) 100%);    
+    height: 100%;
 }
+
+.accItem {
+    width: 100%;
+    inline-size: 150px;
+    overflow-wrap: break-word;
+    margin-bottom: 10px;
+}
+
+.delete,
+.update {
+    position: absolute;
+    top: -10px;
+    opacity: 0;
+}
+
+.delete {
+    left: -10px;
+}
+
+.update {
+    right: -10px;
+}  
+
+.name {
+    position: relative;
+    top: 6px;
+    left: -5px;
+} 
+
+.container:hover .delete,
+.container:hover .update  {
+    opacity: 1;
+}
+
