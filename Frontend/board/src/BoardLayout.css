@@ -1,0 +1,10 @@
+section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.todo,
+.doing,
+.done {
+    background-color: lightgray;
+}
