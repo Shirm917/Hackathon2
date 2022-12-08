@@ -74,7 +74,9 @@ app.post("/", (req,res) => {
 
 // update a task
 app.put("/", (req,res) => {
+
     const {task_id,dataName,dataDescription,status} = req.body;
+
     db("tasks")
     .where("task_id", task_id)
     .update({
@@ -115,7 +117,9 @@ app.delete("/", (req,res) => {
 
 function selectAll(status) {
     return db("tasks")
+
     .select("task_id","name", "description", "status")
     .where("status", status)
     .orderBy("task_id", "asc")
+
 }
