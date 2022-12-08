@@ -75,6 +75,7 @@ app.post("/", (req,res) => {
 // update a task
 app.put("/", (req,res) => {
     const {task_id,name,description,status} = req.body;
+    console.log(req.body);
     db("tasks")
     .where("task_id", task_id)
     .update({
@@ -116,5 +117,5 @@ app.delete("/", (req,res) => {
 function selectAll(status) {
     return db("tasks")
     .select("name", "description", "status")
-    .where("status", status)
+    .where({status})
 }

@@ -68,11 +68,6 @@ setTask = (event) => {
 // update task
 updateTask = (element,event) => {
   event.preventDefault();
-  this.setState({
-    name: element.name,
-    description: element.description,
-    status: element.status
-  })
   const {name,description} = this.state;
   fetch("http://localhost:8000", {
       method: "PUT",
