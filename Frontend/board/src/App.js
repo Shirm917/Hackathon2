@@ -1,7 +1,5 @@
-import './App.css';
 import BoardLayout from './components/BoardLayout';
 import React from 'react';
-import 'tachyons';
 
 class App extends React.Component {
   constructor() {
@@ -68,9 +66,10 @@ setTask = (event) => {
 // update task
 updateTask = (element,event) => {
   event.preventDefault();
-  const {name,description} = this.state;
+  const {name,description,status} = this.state;
   const dataName = name.length === 0 ? element.name : name;
   const dataDescription = description.length === 0 ? element.description : description;
+  const dataStatus = status.length === 0 || status === "chooseStatus" ? element.status : status;
   fetch("http://localhost:8000", {
       method: "PUT",
       headers: {
@@ -80,12 +79,25 @@ updateTask = (element,event) => {
         task_id: element.task_id,
         dataName,
         dataDescription,
-        status: element.status
+        dataStatus
       })
   })
   .then(result => result.json())
   .then(data => {
-    this.setState({[element.status]: data})
+    const filterToDo = data.filter(element => {
+      return element.status === "todo";
+    })
+    const filterDoing = data.filter(element => {
+      return element.status === "doing";
+    })
+    const filterDone = data.filter(element => {
+      return element.status === "done";
+    })
+    this.setState({
+      todo: filterToDo, 
+      doing: filterDoing, 
+      done: filterDone
+    });
   })
   .catch(err => console.log(err));
 
@@ -119,10 +131,14 @@ deleteTask = (element) => {
 }
 
   render() {
+    const {todo,doing,done} = this.state;
     return (
-      <div>
-        <BoardLayout data={{...this.state}} addTask={this.addTask} setTask={this.setTask} updateTask={this.updateTask} deleteTask={this.deleteTask}/>
-      </div>
+      (todo.length === 0 && doing.length === 0 && done.length === 0) ? <h1 className="loading">Loading...</h1> :
+      <section>
+        <BoardLayout status={todo} title="To Do" addTask={this.addTask} setTask={this.setTask} updateTask={this.updateTask} deleteTask={this.deleteTask}/>
+        <BoardLayout status={doing} title="Doing" addTask={this.addTask} setTask={this.setTask} updateTask={this.updateTask} deleteTask={this.deleteTask}/>
+        <BoardLayout status={done} title="Done"  addTask={this.addTask} setTask={this.setTask} updateTask={this.updateTask} deleteTask={this.deleteTask}/>
+      </section>
     );
   }
 }
