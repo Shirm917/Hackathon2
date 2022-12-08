@@ -1,5 +1,6 @@
 import '../BoardLayout.css';
-import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Accordion from 'react-bootstrap/Accordion';
 import { BsFillTrashFill } from "react-icons/bs";
 import AddTask from './AddTask';
 import UpdateTask from './UpdateTask';
@@ -12,15 +13,21 @@ const BoardLayout = (props) => {
                 <div className="todo">
                     <h1>To Do</h1>
                     {
-                        data.todo.map((task,index) => {
+                        data.todo.map(task=> {
                             return (
-                                <Card body key={task.task_id}>
-                                    <h3>{task.name}</h3>
-                                    <p>{task.description}</p>
-                                    <p>{task.status}</p>
-                                    <button onClick={() => deleteTask(task,index)}><BsFillTrashFill /></button>
-                                    <UpdateTask updateTask={updateTask} setTask={setTask} task={task} />
-                                </Card>
+                                <div className="container" key={task.task_id} >
+                                    <Accordion>
+                                        <Accordion.Item eventKey="0" className="accItem">
+                                            <Accordion.Header>
+                                                <Button className="delete" variant="transparent" onClick={(element) => deleteTask(task)}><BsFillTrashFill /></Button>
+                                                <UpdateTask updateTask={updateTask} setTask={setTask} task={task} />
+                                                <p className="name">{task.name}</p>
+                                            </Accordion.Header>
+                                            <Accordion.Body>Description: {task.description}</Accordion.Body>
+                                            {/* <p>{task.status}</p> */}
+                                        </Accordion.Item>
+                                    </Accordion>
+                                </div>
                             )
                         })
                     }
@@ -32,13 +39,19 @@ const BoardLayout = (props) => {
                     {
                         data.doing.map(task => {
                             return (
-                                <Card body key={task.task_id}>
-                                    <h3>{task.name}</h3>
-                                    <p>{task.description}</p>
-                                    <p>{task.status}</p>
-                                    <button onClick={() => deleteTask(task)}><BsFillTrashFill /></button>
-                                    <UpdateTask updateTask={updateTask} setTask={setTask} task={task}/>
-                                </Card>
+                                <div className="container" key={task.task_id}>
+                                    <Accordion>
+                                        <Accordion.Item eventKey="0" className="accItem">
+                                            <Accordion.Header>
+                                                <Button className="delete" variant="transparent" onClick={(element) => deleteTask(task)}><BsFillTrashFill /></Button>
+                                                <UpdateTask updateTask={updateTask} setTask={setTask} task={task} />
+                                                <p className="name">{task.name}</p>
+                                            </Accordion.Header>
+                                            <Accordion.Body>Description: {task.description}</Accordion.Body>
+                                            {/* <p>{task.status}</p> */}
+                                        </Accordion.Item>
+                                    </Accordion>
+                                </div>
                             )
                         })
                     }
@@ -50,13 +63,19 @@ const BoardLayout = (props) => {
                     {
                         data.done.map(task => {
                             return (
-                                <Card body key={task.task_id}>
-                                    <h3>{task.name}</h3>
-                                    <p>{task.description}</p>
-                                    <p>{task.status}</p>
-                                    <button onClick={() => deleteTask(task)}><BsFillTrashFill /></button>
-                                    <UpdateTask updateTask={updateTask} setTask={setTask} task={task}/>
-                                </Card>
+                                <div className="container" key={task.task_id} >
+                                    <Accordion>
+                                        <Accordion.Item eventKey="0" className="accItem">
+                                            <Accordion.Header>
+                                                <Button className="delete" variant="transparent" onClick={(element) => deleteTask(task)}><BsFillTrashFill /></Button>
+                                                <UpdateTask updateTask={updateTask} setTask={setTask} task={task} />
+                                                <p className="name">{task.name}</p>
+                                            </Accordion.Header>
+                                            <Accordion.Body>Description: {task.description}</Accordion.Body>
+                                            {/* <p>{task.status}</p> */}
+                                        </Accordion.Item>
+                                    </Accordion>
+                                </div>
                             )
                         })
                     }

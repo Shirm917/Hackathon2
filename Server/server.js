@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`Listening on port ${process.env.PORT}`);
 })
 
@@ -74,13 +74,14 @@ app.post("/", (req,res) => {
 
 // update a task
 app.put("/", (req,res) => {
-    const {task_id,name,description,status} = req.body;
-    console.log(req.body);
+
+    const {task_id,dataName,dataDescription,status} = req.body;
+
     db("tasks")
     .where("task_id", task_id)
     .update({
-        name,
-        description,
+        name: dataName,
+        description: dataDescription,
         status
     })
     .then(rows => {
@@ -116,6 +117,9 @@ app.delete("/", (req,res) => {
 
 function selectAll(status) {
     return db("tasks")
-    .select("name", "description", "status")
-    .where({status})
+
+    .select("task_id","name", "description", "status")
+    .where("status", status)
+    .orderBy("task_id", "asc")
+
 }

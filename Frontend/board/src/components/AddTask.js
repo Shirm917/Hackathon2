@@ -12,8 +12,8 @@ function AddTask(props) {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Add Task
+      <Button variant="transparent" onClick={handleShow}>
+        + Add Task
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -28,7 +28,7 @@ function AddTask(props) {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Description</Form.Label>
-              <Form.Control type="text" autoFocus name="description" onChange={setTask} />
+              <Form.Control as="textarea" autoFocus name="description" onChange={setTask} />
             </Form.Group>
             <Form.Group className="mb-3">
                 <Form.Select name="status" onChange={setTask} >
