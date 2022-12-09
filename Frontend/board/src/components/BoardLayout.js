@@ -17,7 +17,7 @@ const BoardLayout = (props) => {
                             <Accordion>
                                 <Accordion.Item eventKey="0" className="accItem">
                                     <Accordion.Header>
-                                        <Button className="delete" variant="transparent" onClick={(element) => deleteTask(task)}><BsFillTrashFill /></Button>
+                                        <Button className="deleting" variant="transparent" onClick={(element) => deleteTask(task)}><BsFillTrashFill /></Button>
                                         <UpdateTask updateTask={updateTask} setTask={setTask} task={task} />
                                         <p className="name">{task.name}</p>
                                     </Accordion.Header>
