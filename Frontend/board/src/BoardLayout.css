@@ -4,10 +4,20 @@ body {
     background-repeat: no-repeat;
 }
 
-section {
+.layouts,
+.pickAndAdd {
     display: flex;
     justify-content: space-between;
-    /* margin-top: 20px; */
+}
+
+.pickAndAdd {
+    margin-bottom: 10px;
+}
+
+.pick {
+    background: transparent;
+    border: none;
+    margin-top: -4px;
 }
 
 h1 {
@@ -27,14 +37,14 @@ h1 {
     margin-bottom: 10px;
 }
 
-.delete,
+.deleting,
 .update {
     position: absolute;
     top: -10px;
     opacity: 0;
 }
 
-.delete {
+.deleting {
     left: -10px;
 }
 
@@ -48,7 +58,7 @@ h1 {
     left: -5px;
 } 
 
-.container:hover .delete,
+.container:hover .deleting,
 .container:hover .update  {
     opacity: 1;
 }
