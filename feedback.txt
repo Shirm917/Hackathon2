@@ -1,0 +1,18 @@
+Hi Shir,
+
+I absolutely love your Productivity app!
+It looks simple, but once you go inside it's evident that you've incorporated complex structures, and you nailed it!
+
+Your filing system is well organized, your server.js file is clean and to the point.
+
+I liked the use of the bootstrap library
+
+I appreciate the comments on every step of the way.
+
+I love how you have minimum use of css and not many components (as a true backend developer) because bootstrap does the job for you! 
+BUT we are full stack developers, so show me your use of components and css skills next time.
+
+Overall, in such small period of time you've managed to create trello and I absolutely love it.
+
+Very good job!
+
